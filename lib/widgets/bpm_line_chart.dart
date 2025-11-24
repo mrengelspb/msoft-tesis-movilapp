@@ -16,19 +16,21 @@ class _BpmLineChartState extends ConsumerState<BpmLineChart> {
   final int limitCount = 100; // Máximo de puntos visibles (ventana)
   final List<FlSpot> points = [];
 
+  double x = -0.05;
   double currentXViewEnd = 0;
   double currentXViewStart = 0;
-  int? firstTime;
+  // int? firstTime;
 
   @override
   Widget build(BuildContext context) {
     ref.listen(bpmCurrentValueProvider, (_, next) {
       final v = next.value;
       if (v == null) return;
-      firstTime ??= v.timestamp;
-      final xval = v.timestamp - firstTime!;
+      x += 0.05;
+      //firstTime ??= v.timestamp;
+      //final xval = v.timestamp - firstTime!;
       final yval = v.bpm;
-      points.add(FlSpot(xval.toDouble(), yval));
+      points.add(FlSpot(x.toDouble(), yval));
       if (points.length > limitCount) {
         points.removeAt(0);
       }
@@ -38,7 +40,7 @@ class _BpmLineChartState extends ConsumerState<BpmLineChart> {
       setState(() {});
     });
 
-    if (firstTime == null) return const Center(child: CircularProgressIndicator());
+    if (x < 0) return const Center(child: CircularProgressIndicator());
     return AspectRatio(
       aspectRatio: 1.70,
       child: LineChart(
@@ -90,7 +92,10 @@ FlTitlesData _makeTitles() {
         reservedSize: 30,
         interval: 1,
         getTitlesWidget: (value, meta) {
-          return SideTitleWidget(meta: meta, child: Text(value.toStringAsFixed(0)));
+          return SideTitleWidget(
+            meta: meta,
+            child: Text(value.toStringAsFixed(2), style: TextStyle(fontSize: 10)),
+          );
         },
       ),
     ),
