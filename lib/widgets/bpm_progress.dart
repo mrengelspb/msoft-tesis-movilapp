@@ -1,30 +1,35 @@
 import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:mqttapp/models/bpm_events.dart';
 
 class BpmProgress extends StatelessWidget {
-  const BpmProgress({super.key});
+  const BpmProgress({super.key, required this.value, required this.zone});
+
+  final double value;
+  final BpmZone zone;
 
   @override
   Widget build(BuildContext context) {
     return DashedCircularProgressBar.aspectRatio(
       aspectRatio: 1,
-      progress: 478,
-      maxProgress: 670,
+      progress: 100,
+      maxProgress: 220,
       corners: StrokeCap.butt,
-      foregroundColor: const Color.fromRGBO(223, 128, 84, 1),
-      backgroundColor: const Color.fromRGBO(155, 82, 60, 1),
+      foregroundColor: zone.progressForeground,
+      backgroundColor: zone.progressBackground,
       foregroundStrokeWidth: 16,
       backgroundStrokeWidth: 16,
       animation: true,
-      child: _BmpVisual(value: "165"),
+      child: _BmpVisual(value: value.toStringAsFixed(0), zoneName: zone.name),
     );
   }
 }
 
 class _BmpVisual extends StatelessWidget {
-  const _BmpVisual({required this.value});
+  const _BmpVisual({required this.value, required this.zoneName});
 
   final String value;
+  final String zoneName;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +63,7 @@ class _BmpVisual extends StatelessWidget {
             ),
           ],
         ),
-        Positioned(bottom: 60, child: Text("ZONA: INTENSA 🔥")),
+        Positioned(bottom: 60, child: Text("ZONA: $zoneName")),
       ],
     );
   }

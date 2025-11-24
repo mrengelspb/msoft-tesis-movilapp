@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:relative_time/relative_time.dart';
 
 class BpmNotice extends StatelessWidget {
-  const BpmNotice({required this.time, required this.message});
+  const BpmNotice({super.key, required this.time, required this.message});
 
   final DateTime time;
   final String message;
