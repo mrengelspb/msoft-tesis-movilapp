@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class TitleBar extends StatelessWidget {
-  const TitleBar({super.key});
+  const TitleBar({super.key, required this.user});
+
+  final String user;
 
   @override
   Widget build(BuildContext context) {
@@ -9,9 +11,9 @@ class TitleBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("CardioFlow", style: TextStyle(fontWeight: FontWeight.bold)),
+        Text("MSOFT", style: TextStyle(fontWeight: FontWeight.bold)),
         Text(
-          "Sarah L.",
+          user,
           style: Theme.of(
             context,
           ).textTheme.bodyMedium?.copyWith(color: Color.fromRGBO(141, 141, 143, 1)),

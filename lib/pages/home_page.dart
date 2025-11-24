@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TitleBar(),
+        title: _TitleBar(),
         leading: const SizedBox(),
         leadingWidth: 0,
         actions: [AccountButton()],
@@ -49,6 +49,20 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _TitleBar extends ConsumerWidget {
+  const _TitleBar();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final s = ref.watch(bpmCurrentValueProvider);
+    return s.when(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (e, _) => Text(e.toString()),
+      data: (d) => TitleBar(user: d.userId),
     );
   }
 }

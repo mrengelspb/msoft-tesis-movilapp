@@ -20,16 +20,16 @@ class BpmProgress extends StatelessWidget {
       foregroundStrokeWidth: 16,
       backgroundStrokeWidth: 16,
       animation: true,
-      child: _BmpVisual(value: value.toStringAsFixed(0), zoneName: zone.name),
+      child: _BmpVisual(value: value.toStringAsFixed(0), zone: zone),
     );
   }
 }
 
 class _BmpVisual extends StatelessWidget {
-  const _BmpVisual({required this.value, required this.zoneName});
+  const _BmpVisual({required this.value, required this.zone});
 
   final String value;
-  final String zoneName;
+  final BpmZone zone;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,7 @@ class _BmpVisual extends StatelessWidget {
             ),
           ],
         ),
-        Positioned(bottom: 60, child: Text("ZONA: $zoneName")),
+        Positioned(bottom: 60, child: Text("ZONA ${zone.value}: ${zone.name}")),
       ],
     );
   }
