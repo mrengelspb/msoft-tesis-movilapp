@@ -5,8 +5,8 @@ import 'package:mqtt5_client/mqtt5_client.dart';
 import 'package:mqttapp/models/bpm_events.dart';
 import 'package:mqttapp/providers/mqtt_client.dart';
 
-final bpmCurrentValueProvider = StreamProvider((ref) async* {
-  final client = await ref.read(mqttClient.future);
+final bpmCurrentValueProvider = StreamProvider.autoDispose((ref) async* {
+  final client = await ref.watch(mqttClient.future);
   const topic = 'msoft/msrr/status';
   client.subscribe(topic, MqttQos.atLeastOnce);
   ref.onDispose(() {
@@ -25,8 +25,8 @@ final bpmCurrentValueProvider = StreamProvider((ref) async* {
   }
 });
 
-final bpmZoneChangeProvider = StreamProvider((ref) async* {
-  final client = await ref.read(mqttClient.future);
+final bpmZoneChangeProvider = StreamProvider.autoDispose((ref) async* {
+  final client = await ref.watch(mqttClient.future);
   const topic = 'msoft/msrr/zone_change';
   client.subscribe(topic, MqttQos.atLeastOnce);
   ref.onDispose(() {

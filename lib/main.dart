@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mqttapp/pages/home_page.dart';
 import 'package:mqttapp/pages/login_page.dart';
 
 void main() => runApp(const ProviderScope(child: MyApp()));
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "BPM App",
       theme: ThemeData.dark(),
-      home: LoginPage(),
+      initialRoute: "/login",
+      routes: {"/home": (_) => HomePage(), "/login": (_) => LoginPage()},
     );
   }
 }

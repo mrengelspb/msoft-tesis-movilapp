@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mqttapp/pages/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -54,9 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                         return;
                       }
                       _formKey.currentState!.reset();
-                      Navigator.of(
-                        context,
-                      ).push(MaterialPageRoute(builder: (context) => HomePage()));
+                      Navigator.pushNamed(context, "/home");
                     },
                     style: ElevatedButton.styleFrom(
                       shape: const RoundedRectangleBorder(),

@@ -18,7 +18,7 @@ class AccountButton extends StatelessWidget {
       ),
       menuChildren: [
         MenuItemButton(
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => Navigator.of(context).pushReplacementNamed("/login"),
           child: const Text("Cerra sesión"),
         ),
       ],
