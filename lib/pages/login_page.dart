@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Icon(Icons.monitor_heart_rounded, size: 70),
                 Text(
-                  "BMP APP",
+                  "BPM APP",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 20),
