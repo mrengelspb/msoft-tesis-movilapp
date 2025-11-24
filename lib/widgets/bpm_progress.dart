@@ -12,7 +12,7 @@ class BpmProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     return DashedCircularProgressBar.aspectRatio(
       aspectRatio: 1,
-      progress: 100,
+      progress: value,
       maxProgress: 220,
       corners: StrokeCap.butt,
       foregroundColor: zone.progressForeground,

@@ -17,13 +17,10 @@ final bpmCurrentValueProvider = StreamProvider((ref) async* {
     final msg = value[0].payload;
     if (msg is MqttPublishMessage) {
       final pt = MqttUtilities.bytesToStringAsString(msg.payload.message!);
-      print(pt);
       try {
         final ev = BpmCurrent.fromJson(jsonDecode(pt));
         yield ev;
-      } catch (e) {
-        print(e);
-      }
+      } catch (_) {}
     }
   }
 });
@@ -43,9 +40,7 @@ final bpmZoneChangeProvider = StreamProvider((ref) async* {
       try {
         final ev = BpmZoneChange.fromJson(jsonDecode(pt));
         yield ev;
-      } catch (e) {
-        print(e);
-      }
+      } catch (_) {}
     }
   }
 });

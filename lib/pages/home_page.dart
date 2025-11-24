@@ -60,7 +60,7 @@ class _TitleBar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final s = ref.watch(bpmCurrentValueProvider);
     return s.when(
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => const CircularProgressIndicator(),
       error: (e, _) => Text(e.toString()),
       data: (d) => TitleBar(user: d.userId),
     );
